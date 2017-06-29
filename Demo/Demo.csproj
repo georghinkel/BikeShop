@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{250640FE-8256-4AB0-98B6-80133A54925A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BikeShop</RootNamespace>
-    <AssemblyName>BikeShop</AssemblyName>
+    <ProjectGuid>{B9206333-139C-400E-9ED9-6630D26E8446}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Demo</RootNamespace>
+    <AssemblyName>Demo</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -64,56 +66,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Metamodel\BasicPart.cs" />
-    <Compile Include="Metamodel\Bicycle.cs" />
-    <Compile Include="Metamodel\BicycleComponentsCollection.cs" />
-    <Compile Include="Metamodel\BikeInStock.cs" />
-    <Compile Include="Metamodel\CityBike.cs" />
-    <Compile Include="Metamodel\CityBikePurposeCollection.cs" />
-    <Compile Include="Metamodel\Component.cs" />
-    <Compile Include="Metamodel\Configuration.cs" />
-    <Compile Include="Metamodel\Fork.cs" />
-    <Compile Include="Metamodel\Frame.cs" />
-    <Compile Include="Metamodel\HandleBar.cs" />
-    <Compile Include="Metamodel\IBasicPart.cs" />
-    <Compile Include="Metamodel\IBicycle.cs" />
-    <Compile Include="Metamodel\IBikeInStock.cs" />
-    <Compile Include="Metamodel\ICityBike.cs" />
-    <Compile Include="Metamodel\IComponent.cs" />
-    <Compile Include="Metamodel\IConfiguration.cs" />
-    <Compile Include="Metamodel\IFork.cs" />
-    <Compile Include="Metamodel\IFrame.cs" />
-    <Compile Include="Metamodel\IHandleBar.cs" />
-    <Compile Include="Metamodel\IMountainBike.cs" />
-    <Compile Include="Metamodel\IPart.cs" />
-    <Compile Include="Metamodel\IProRaceBike.cs" />
-    <Compile Include="Metamodel\IProRaceFrame.cs" />
-    <Compile Include="Metamodel\IRaceBike.cs" />
-    <Compile Include="Metamodel\IRaceFrame.cs" />
-    <Compile Include="Metamodel\IRearSuspension.cs" />
-    <Compile Include="Metamodel\ISuspensionFork.cs" />
-    <Compile Include="Metamodel\IWheel.cs" />
-    <Compile Include="Metamodel\Material.cs" />
-    <Compile Include="Metamodel\MountainBike.cs" />
-    <Compile Include="Metamodel\MountainBikeComponentsCollection.cs" />
-    <Compile Include="Metamodel\MountainBikePurposeCollection.cs" />
-    <Compile Include="Metamodel\Part.cs" />
-    <Compile Include="Metamodel\ProRaceBike.cs" />
-    <Compile Include="Metamodel\ProRaceBikePurposeCollection.cs" />
-    <Compile Include="Metamodel\ProRaceFrame.cs" />
-    <Compile Include="Metamodel\Purpose.cs" />
-    <Compile Include="Metamodel\RaceBike.cs" />
-    <Compile Include="Metamodel\RaceBikePurposeCollection.cs" />
-    <Compile Include="Metamodel\RaceFrame.cs" />
-    <Compile Include="Metamodel\RearSuspension.cs" />
-    <Compile Include="Metamodel\SuspensionFork.cs" />
-    <Compile Include="Metamodel\Wheel.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BikeShop.ecore" />
-    <EmbeddedResource Include="BikeShop.nmeta" />
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BikeShop\BikeShop.csproj">
+      <Project>{250640fe-8256-4ab0-98b6-80133a54925a}</Project>
+      <Name>BikeShop</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

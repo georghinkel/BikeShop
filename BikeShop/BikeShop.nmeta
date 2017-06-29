@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="http://www.fzi.de/MULTI/2017/bicycleChallenge" Prefix="bikes" Name="BicycleChallenge" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <Types xsi:type="nmeta:Class" IsAbstract="True" Name="Configuration">
+    <References IsContainment="True" ReferenceType="#//Component" UpperBound="-1" Name="Components" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Name" />
+  </Types>
+  <Types xsi:type="nmeta:Class" IsAbstract="True" Name="Part">
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Name" />
+  </Types>
+  <Types xsi:type="nmeta:Class" IsAbstract="True" BaseTypes="#//Part" Name="Component">
+    <References IsContainment="True" ReferenceType="#//Part" UpperBound="-1" Name="Parts" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Weight" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Part" Name="BasicPart" />
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Configuration" Name="Bicycle">
+    <References IsContainment="True" Refines="#//Configuration/Components" ReferenceType="#//Frame" LowerBound="1" Name="Frame" />
+    <References IsContainment="True" Refines="#//Configuration/Components" ReferenceType="#//Fork" LowerBound="1" Name="Fork" />
+    <References IsContainment="True" Refines="#//Configuration/Components" ReferenceType="#//Wheel" IsOrdered="True" LowerBound="2" UpperBound="2" Name="Wheels" />
+    <References IsContainment="True" Refines="#//Configuration/Components" ReferenceType="#//HandleBar" LowerBound="1" Name="HandleBar" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="SalesPrice" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="PurchasePrice" />
+    <Attributes LowerBound="1" UpperBound="3" Type="#//Purpose" Name="Purpose" />
+  </Types>
+  <Types xsi:type="nmeta:Enumeration" Name="Purpose">
+    <Literals Value="1" Name="Mountains" />
+    <Literals Value="2" Name="City" />
+    <Literals Value="3" Name="Race" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Component" Name="Frame">
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Color" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="SerialNumber" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Component" Name="Fork">
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Color" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Component" Name="Wheel">
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Size" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Component" Name="HandleBar" />
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Bicycle" Name="MountainBike">
+    <References IsContainment="True" Refines="#//Bicycle/Fork" ReferenceType="#//SuspensionFork" LowerBound="1" Name="SuspensionFork" />
+    <References IsContainment="True" Refines="#//Configuration/Components" ReferenceType="#//RearSuspension" LowerBound="1" Name="RearSuspension" />
+    <AttributeConstraints Values="Mountains City" Constrains="#//Bicycle/Purpose"/>
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Fork" Name="SuspensionFork" />
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Component" Name="RearSuspension" />
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Bicycle" Name="CityBike">
+    <AttributeConstraints Values="City" Constrains="#//Bicycle/Purpose"/>
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Bicycle" Name="RaceBike">
+    <References IsContainment="True" Refines="#//Bicycle/Frame" ReferenceType="#//RaceFrame" LowerBound="1" Name="RaceFrame" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="Certified" />
+    <AttributeConstraints Values="City Race" Constrains="#//Bicycle/Purpose"/>
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//RaceBike" Name="ProRaceBike">
+    <AttributeConstraints Values="Race" Constrains="#//Bicycle/Purpose"/>
+    <AttributeConstraints Values="True" Constrains="#//RaceBike/Certified"/>
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Frame" Name="RaceFrame">
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="TopTubeLength" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="DownTubeLength" />
+    <Attributes LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="SeatTubeLength" />
+    <Attributes LowerBound="1" Type="#//Material" Name="Material" />
+  </Types>
+  <Types xsi:type="nmeta:Enumeration" Name="Material">
+    <Literals Value="1" Name="Steel" />
+    <Literals Value="2" Name="Aluminum" />
+    <Literals Value="3" Name="Carbon" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//RaceFrame" Name="ProRaceFrame" />
+  <Types xsi:type="nmeta:Class" Name="BikeInStock">
+    <References ReferenceType="#//Bicycle" LowerBound="1" Name="Model" />
+    <Attributes Type="http://nmf.codeplex.com/nmeta/#//Double" Name="DiscountedPrice" />
+  </Types>
+</nmeta:Namespace>
